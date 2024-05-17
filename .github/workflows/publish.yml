@@ -15,9 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: dart-lang/setup-dart@v1
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - run: flutter --version
       - name: Install dependencies
-        run: dart pub get
-      # Here you can insert custom steps you need
-      # - run: dart tool/generate-code.dart
+        run: flutter pub get
+      - name: Format code
+        run: dart format --set-exit-if-changed .
+      - name: Tests
+        run: flutter test .
+      - name: Dry Run
+        run: flutter pub publish --dry-run
       - name: Publish
         run: dart pub publish --force
