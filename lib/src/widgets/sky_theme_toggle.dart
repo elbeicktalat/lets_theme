@@ -353,13 +353,13 @@ class _CardToggle extends StatelessWidget {
                   topLeft: Radius.circular(8),
                 ),
                 elevation: 8,
-                color: theme.colorScheme.background,
+                color: theme.colorScheme.surface,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Aa',
                     style: TextStyle(
-                      color: theme.colorScheme.onBackground,
+                      color: theme.colorScheme.onSurface,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
