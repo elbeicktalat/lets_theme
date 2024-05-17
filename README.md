@@ -99,13 +99,13 @@ theme. This helps avoid theme change flickering on app startup.
 A full-featured widget to play with for changing theme mode, this widget will save your time,
 since it already includes the following widgets out of the box.
 
-|              Light               |              Dark               |
-|:--------------------------------:|:-------------------------------:|
-| ![img.png](.doc/light_theme_customized.png) | ![img.png](.doc/dark_theme.png) |
+|                                                      Light                                                       |                                                 Dark                                                 |
+|:----------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme_customized.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/dark_theme.png) |
 
-|              System Light               |              System Dark               |
-|:---------------------------------------:|:--------------------------------------:|
-| ![img.png](.doc/system_light_theme.png) | ![img.png](.doc/system_dark_theme.png) |
+|                                                 System Light                                                 |                                                 System Dark                                                 |
+|:------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/system_light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/system_dark_theme.png) |
 
 ```dart
 @override
@@ -165,9 +165,9 @@ const SkyThemeToggle(
 ```
 
 
-|              Before              |                   Afters                    |
-|:--------------------------------:|:-------------------------------------------:|
-| ![img.png](.doc/light_theme.png) | ![img.png](.doc/light_theme_customized.png) |
+|                                                Before                                                 |                                                      Afters                                                      |
+|:-----------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme_customized.png) |
 
 
 Tip: **icons** are not available in `SkyThemeToggle()` also **labels** are not available `SkyThemeToggle.icon()`
@@ -177,7 +177,7 @@ There is 2 types of changing. One is `infinite` and next is `spesific`, the firs
 and everytime you click any one of the toggles, the selection moves to the next. The Second one instead,
 moves straight away to the toggle you clicked on, changing the theme to what you have clicked on.  
 
-[Video](.doc/sky_toggle_selection_mode_demo.mp4)
+[Video](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/sky_toggle_selection_mode_demo.mp4)
 
 ```dart
 const SkyThemeToggle(
