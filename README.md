@@ -1,4 +1,4 @@
-# Easy Theme
+# Let's Theme
 
 The easiest way to control your app theme, this package provides couple of widgets to change
 between **system and** **light/dark** theme.
@@ -8,18 +8,18 @@ between **system and** **light/dark** theme.
 
 ## Index
 
-- [Initialization](#initialization)
+- [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Handling App Start](#get-themeMode-at-app-start)
-- [Sky Theme Toggle Widget](#sky-theme-toggle-widget)
-- [Sky Theme Toggle Widget Customization](#sky-theme-toggle-widget-customization)
+- [Let's Theme Toggle Widget](#lets-theme-toggle-widget)
+- [Let's Theme Toggle Widget Customization](#lets-theme-toggle-widget-customization)
 - [Changing Theme Mode](#changing-theme-mode)
 - [Toggle Theme Mode](#toggle-theme-mode)
 - [Changing Themes](#changing-themes)
 - [Reset Theme](#reset-theme)
 - [Handling Theme Changes](#listen-to-the-theme-mode-changes)
 
-## Initialization
+## Installation
 
 Add this to your packages pubspec.yaml file:
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       dark: ThemeData.dark(useMaterial3: true), 
       initialMode: ThemeMode.system, // bad: I'll in more detail below, but you need to know that this would fine if we don't save any preferences.
       builder: (ThemeData light, ThemeData dark) => MaterialApp(
-        title: 'Easy Theme Demo',
+        title: "Let's Theme Demo",
         theme: light,
         darkTheme: dark,
         home: MyHomePage(),
@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
       dark: ThemeData.dark(useMaterial3: true),
       initial: savedThemeMode ?? ThemeMode.system, // good
       builder: (ThemeData light, ThemeData dark) => MaterialApp(
-        title: 'Easy Theme Demo',
+        title: "Let's Theme Demo",
         theme: light,
         darkTheme: dark,
         home: MyHomePage(),
@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
 Notice that I passed the retrieved `ThemeMode` to my `MaterialApp` so that I can use it while initializing the default
 theme. This helps avoid theme change flickering on app startup.
 
-## Sky Theme Toggle Widget
+## Let's Theme Toggle Widget
 
 A full-featured widget to play with for changing theme mode, this widget will save your time,
 since it already includes the following widgets out of the box.
@@ -146,7 +146,7 @@ Widget build(BuildContext context) {
 Yes, this is all that you need 👆 the `LetsThemeToggle` widget will manage everything for you!
 As per example, there are multiple types of `LetsThemeToggle` such as `LetsThemeToggle.compact` so try them by yourself 😇  
 
-## Sky Theme Toggle Widget Customization
+## Let's Theme Toggle Widget Customization
 
 As for now, there are no too many things to customize, but you still be able to customize the labels and icons.
 I show you how:
