@@ -1,11 +1,11 @@
-name: sky_theme
+name: lets_theme
 description: Provides couple of widgets to change between system and light/dark theme.
 version: 0.0.1
-homepage: https://github.com/elbeicktalat/sky_theme
-issue_tracker: https://github.com/elbeicktalat/sky_theme/issues
+homepage: https://github.com/elbeicktalat/lets_theme
+issue_tracker: https://github.com/elbeicktalat/lets_theme/issues
 
 screenshots:
-  - description: Sky Theme Toggles
+  - description: Let's Theme Toggles
     path: screenshots/light_theme.png
 
 environment:

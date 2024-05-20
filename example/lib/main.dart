@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sky_theme/sky_theme.dart';
+import 'package:lets_theme/lets_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final ThemeMode? themeMode = await SkyTheme.getThemeMode();
+  final ThemeMode? themeMode = await LetsTheme.getThemeMode();
 
   runApp(MyApp(themeMode));
 }
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SkyTheme(
+    return LetsTheme(
       light: ThemeData.light(),
       dark: ThemeData.dark(),
       initialMode: themeMode ?? ThemeMode.system,
@@ -61,13 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              SkyTheme.of(context).mode.name.toUpperCase(),
+              LetsTheme.of(context).mode.name.toUpperCase(),
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           const SizedBox(height: 24),
-          const SkyThemeToggle(
-            selectionMode: SkyThemeToggleSelectionMode.specific,
+          const LetsThemeToggle(
+            selectionMode: LetsThemeToggleSelectionMode.specific,
             labels: [
               'Day Mode',
               'Night Mode',
@@ -75,11 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           const SizedBox(height: 24),
-          const SkyThemeToggle.compact(),
+          const LetsThemeToggle.compact(),
           const SizedBox(height: 24),
-          const SkyThemeToggle.label(),
+          const LetsThemeToggle.label(),
           const SizedBox(height: 24),
-          const SkyThemeToggle.icon(),
+          const LetsThemeToggle.icon(),
         ],
       ),
     );

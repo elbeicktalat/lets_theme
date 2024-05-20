@@ -4,10 +4,10 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sky_theme/src/inherited_sky_theme.dart';
-import 'package:sky_theme/src/sky_theme_manager.dart';
-import 'package:sky_theme/src/utils/theme_mode_extension.dart';
-import 'package:sky_theme/src/utils/theme_preferences.dart';
+import 'package:lets_theme/src/lets_theme_inherited.dart';
+import 'package:lets_theme/src/lets_theme_manager.dart';
+import 'package:lets_theme/src/utils/theme_mode_extension.dart';
+import 'package:lets_theme/src/utils/theme_preferences.dart';
 
 /// Builder function to build themed widget.
 typedef ThemeBuilder = Widget Function(ThemeData light, ThemeData dark);
@@ -17,7 +17,7 @@ typedef ThemeBuilder = Widget Function(ThemeData light, ThemeData dark);
 /// Example:
 ///
 /// ```dart
-///  SkyTheme(
+///  LetsTheme(
 ///   light: lightTheme,
 ///   dark: darkTheme,
 ///   initial: ThemeMode.system,
@@ -28,8 +28,8 @@ typedef ThemeBuilder = Widget Function(ThemeData light, ThemeData dark);
 ///   ),
 /// );
 /// ```
-class SkyTheme extends StatefulWidget {
-  const SkyTheme({
+class LetsTheme extends StatefulWidget {
+  const LetsTheme({
     required this.light,
     required this.dark,
     required this.initialMode,
@@ -54,28 +54,28 @@ class SkyTheme extends StatefulWidget {
   /// to persist theme mode changes even after shared-preferences
   /// is cleared (e.g. after log out), do not remove this [preferencesKey]
   /// key from shared-preferences.
-  static const String preferencesKey = 'sky_theme_preferences';
+  static const String preferencesKey = 'lets_theme_preferences';
 
   @override
-  State<SkyTheme> createState() => _SkyThemeState();
+  State<LetsTheme> createState() => _LetsThemeState();
 
-  /// Returns reference of the [SkyThemeManager] which allows access of
-  /// the state object of [SkyTheme] in a restrictive way.
-  static SkyThemeManager of(BuildContext context) {
-    context.dependOnInheritedWidgetOfExactType<InheritedSkyTheme>()!;
-    return context.findAncestorStateOfType<State<SkyTheme>>()!
-        as SkyThemeManager;
+  /// Returns reference of the [LetsThemeManager] which allows access of
+  /// the state object of [LetsTheme] in a restrictive way.
+  static LetsThemeManager of(BuildContext context) {
+    context.dependOnInheritedWidgetOfExactType<InheritedLetsTheme>()!;
+    return context.findAncestorStateOfType<State<LetsTheme>>()!
+        as LetsThemeManager;
   }
 
-  /// Returns reference of the [SkyThemeManager] which allows access of
-  /// the state object of [SkyTheme] in a restrictive way.
-  /// This returns null if the state instance of [SkyTheme] is not found.
-  static SkyThemeManager? maybeOf(BuildContext context) {
-    context.dependOnInheritedWidgetOfExactType<InheritedSkyTheme>();
-    final State<SkyTheme>? state =
-        context.findAncestorStateOfType<State<SkyTheme>>();
+  /// Returns reference of the [LetsThemeManager] which allows access of
+  /// the state object of [LetsTheme] in a restrictive way.
+  /// This returns null if the state instance of [LetsTheme] is not found.
+  static LetsThemeManager? maybeOf(BuildContext context) {
+    context.dependOnInheritedWidgetOfExactType<InheritedLetsTheme>();
+    final State<LetsTheme>? state =
+        context.findAncestorStateOfType<State<LetsTheme>>();
     if (state == null) return null;
-    return state as SkyThemeManager;
+    return state as LetsThemeManager;
   }
 
   /// returns most recent theme mode. This can be used to eagerly get previous
@@ -94,8 +94,8 @@ class SkyTheme extends StatefulWidget {
   }
 }
 
-class _SkyThemeState extends State<SkyTheme>
-    with WidgetsBindingObserver, SkyThemeManager {
+class _LetsThemeState extends State<LetsTheme>
+    with WidgetsBindingObserver, LetsThemeManager {
   @override
   void initState() {
     super.initState();
@@ -125,7 +125,7 @@ class _SkyThemeState extends State<SkyTheme>
 
   @override
   Widget build(BuildContext context) {
-    return InheritedSkyTheme(
+    return InheritedLetsTheme(
       manager: this,
       child: widget.builder(theme, mode.isLight ? lightTheme : darkTheme),
     );

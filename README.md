@@ -3,8 +3,8 @@
 The easiest way to control your app theme, this package provides couple of widgets to change
 between **system and** **light/dark** theme.
 
-[![Github stars](https://img.shields.io/github/stars/elbeicktalat/sky_theme?logo=github)](https://github.com/elbeicktalat/sky_theme)
-[![Pub Version](https://img.shields.io/pub/v/sky_theme?color=blue&logo=dart)](https://pub.dev/packages/smart_theme)
+[![Github stars](https://img.shields.io/github/stars/elbeicktalat/lets_theme?logo=github)](https://github.com/elbeicktalat/lets_theme)
+[![Pub Version](https://img.shields.io/pub/v/lets_theme?color=blue&logo=dart)](https://pub.dev/packages/smart_theme)
 
 ## Index
 
@@ -25,14 +25,14 @@ Add this to your packages pubspec.yaml file:
 
 ```yaml
 dependencies:
-  sky_theme: <^last>
+  lets_theme: <^last>
   shared_preferences: <^last>
 ```
 
 ## Getting Started
 
 ```dart
-import 'package:sky_theme/sky_theme.dart';
+import 'package:lets_theme/lets_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -42,7 +42,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SkyTheme(
+    return LetsTheme(
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true), 
       initialMode: ThemeMode.system, // bad: I'll in more detail below, but you need to know that this would fine if we don't save any preferences.
@@ -67,7 +67,7 @@ The Below example shows how it can be done.
 ```dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final savedThemeMode = await SkyTheme.getThemeMode();
+  final savedThemeMode = await LetsTheme.getThemeMode();
   runApp(MyApp(savedThemeMode: savedThemeMode));
 }
 ```
@@ -76,7 +76,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SkyTheme(
+    return LetsTheme(
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true),
       initial: savedThemeMode ?? ThemeMode.system, // good
@@ -101,11 +101,11 @@ since it already includes the following widgets out of the box.
 
 |                                                      Light                                                       |                                                 Dark                                                 |
 |:----------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme_customized.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/dark_theme.png) |
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/light_theme_customized.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/dark_theme.png) |
 
 |                                                 System Light                                                 |                                                 System Dark                                                 |
 |:------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|
-| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/system_light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/system_dark_theme.png) |
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/system_light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/system_dark_theme.png) |
 
 ```dart
 @override
@@ -125,26 +125,26 @@ Widget build(BuildContext context) {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            SkyTheme.of(context).mode.name.toUpperCase(),
+            LetsTheme.of(context).mode.name.toUpperCase(),
             style: Theme.of(context).textTheme.displaySmall,
           ),
         ),
         const SizedBox(height: 24),
-        const SkyThemeToggle(),
+        const LetsThemeToggle(),
         const SizedBox(height: 24),
-        const SkyThemeToggle.compact(),
+        const LetsThemeToggle.compact(),
         const SizedBox(height: 24),
-        const SkyThemeToggle.label(),
+        const LetsThemeToggle.label(),
         const SizedBox(height: 24),
-        const SkyThemeToggle.icon(),
+        const LetsThemeToggle.icon(),
       ],
     ),
   );
 }
 ```
 
-Yes, this is all that you need 👆 the `SkyThemeToggle` widget will manage everything for you!
-As per example, there are multiple types of `SkyThemeToggle` such as `SkyThemeToggle.compact` so try them by yourself 😇  
+Yes, this is all that you need 👆 the `LetsThemeToggle` widget will manage everything for you!
+As per example, there are multiple types of `LetsThemeToggle` such as `LetsThemeToggle.compact` so try them by yourself 😇  
 
 ## Sky Theme Toggle Widget Customization
 
@@ -152,10 +152,10 @@ As for now, there are no too many things to customize, but you still be able to 
 I show you how:
 
 ```dart
-const SkyThemeToggle() // before
+const LetsThemeToggle() // before
 
 // after
-const SkyThemeToggle(
+const LetsThemeToggle(
   labels: [
     'Day Mode',
     'Night Mode',
@@ -167,26 +167,26 @@ const SkyThemeToggle(
 
 |                                                Before                                                 |                                                      Afters                                                      |
 |:-----------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
-| ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/light_theme_customized.png) |
+| ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/light_theme.png) | ![img.png](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/light_theme_customized.png) |
 
 
-Tip: **icons** are not available in `SkyThemeToggle()` also **labels** are not available `SkyThemeToggle.icon()`
+Tip: **icons** are not available in `LetsThemeToggle()` also **labels** are not available `LetsThemeToggle.icon()`
 
 One last customization, you can control the behavior of how the toggles dose the changes.
 There is 2 types of changing. One is `infinite` and next is `spesific`, the first dose accepts clicks on any Toggle, 
 and everytime you click any one of the toggles, the selection moves to the next. The Second one instead,
 moves straight away to the toggle you clicked on, changing the theme to what you have clicked on.  
 
-[Video](https://raw.githubusercontent.com/elbeicktalat/sky_theme/main/.doc/readme/sky_toggle_selection_mode_demo.mp4)
+[Video](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/sky_toggle_selection_mode_demo.mp4)
 
 ```dart
-const SkyThemeToggle(
-  selectionMode: SkyThemeToggleSelectionMode.infinite,
+const LetsThemeToggle(
+  selectionMode: LetsThemeToggleSelectionMode.infinite,
 )
 
 // defaults
-const SkyThemeToggle.compact(
-  selectionMode: SkyThemeToggleSelectionMode.specific,
+const LetsThemeToggle.compact(
+  selectionMode: LetsThemeToggleSelectionMode.specific,
 )
 ```
 
@@ -197,24 +197,24 @@ change your theme modes: **light to dark, dark to light or to system default**.
 
 ```dart
 // sets theme mode to dark
-SkyTheme.of(context).setDark();
+LetsTheme.of(context).setDark();
 
 // sets theme mode to light
-SkyTheme.of(context).setLight();
+LetsTheme.of(context).setLight();
 
 // sets theme mode to system default
-SkyTheme.of(context).setSystem();
+LetsTheme.of(context).setSystem();
 
 // sets theme mode to light if current theme is dark and vice-versa.
-SkyTheme.of(context).changeThemeMode();
+LetsTheme.of(context).changeThemeMode();
 ```
 
 ## Toggle Theme Mode
 
-`SkyTheme` allows you to toggle between light, dark and system theme the easiest way possible.
+`LetsTheme` allows you to toggle between light, dark and system theme the easiest way possible.
 
 ```dart
-SkyTheme.of(context).toggleThemeMode();
+LetsTheme.of(context).toggleThemeMode();
 ```
 
 Everytime you call this method the `ThemeData` will change starting from **Light** to **Dark** 
@@ -226,7 +226,7 @@ If you want to change the theme entirely like changing all the colors to some ot
 then you can use `setTheme` method.
 
 ```dart
-SkyTheme.of(context).setTheme(
+LetsTheme.of(context).setTheme(
   light: ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -242,11 +242,11 @@ SkyTheme.of(context).setTheme(
 
 ## Reset Theme
 
-`SkyTheme` is smart enough to keep your hardcoded **default** themes provided at the time of initialization.
+`LetsTheme` is smart enough to keep your hardcoded **default** themes provided at the time of initialization.
 You can fall back to those default themes in a straightforward way.
 
 ```dart
-SkyTheme.of(context).reset();
+LetsTheme.of(context).reset();
 ```
 
 This will reset your `ThemeData` as well as `ThemeMode` to the **initial** values provided at the time of initialization.
@@ -257,7 +257,7 @@ You can listen to the changes in the theme mode via a `ValueNotifier`. This can 
 screen or developing ui to show theme status.
 
 ```dart
-SkyTheme.of(context).themeModeNotifier.addListener(() {
+LetsTheme.of(context).themeModeNotifier.addListener(() {
   // put your logic.
 });
 ```
@@ -266,7 +266,7 @@ Or you can utilize it to react on UI with
 
 ```dart
 ValueListenableBuilder(
-  valueListenable: SkyTheme.of(context).themeModeNotifier,
+  valueListenable: LetsTheme.of(context).themeModeNotifier,
   builder: (_, mode, child) {
     // update your UI
     return Container();

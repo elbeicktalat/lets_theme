@@ -4,14 +4,14 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sky_theme/src/sky_theme_manager.dart';
+import 'package:lets_theme/src/lets_theme_manager.dart';
 
 /// An inherited widget that saves provides current mode, theme, dark theme and
 /// brightness to its children.
 /// This is an internal widget and should not be used directly.
-class InheritedSkyTheme extends InheritedWidget {
-  InheritedSkyTheme({
-    required SkyThemeManager manager,
+class InheritedLetsTheme extends InheritedWidget {
+  InheritedLetsTheme({
+    required LetsThemeManager manager,
     required super.child,
     super.key,
   })  : mode = manager.mode,
@@ -25,7 +25,7 @@ class InheritedSkyTheme extends InheritedWidget {
   final Brightness? brightness;
 
   @override
-  bool updateShouldNotify(covariant InheritedSkyTheme oldWidget) {
+  bool updateShouldNotify(covariant InheritedLetsTheme oldWidget) {
     return oldWidget.mode != mode ||
         oldWidget.theme != theme ||
         oldWidget.darkTheme != darkTheme ||

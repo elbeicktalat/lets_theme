@@ -3,10 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:sky_theme/src/utils/theme_mode_extension.dart';
-import 'package:sky_theme/src/utils/theme_preferences.dart';
+import 'package:lets_theme/src/utils/theme_mode_extension.dart';
+import 'package:lets_theme/src/utils/theme_preferences.dart';
 
-mixin SkyThemeManager {
+mixin LetsThemeManager {
   /// Returns the light theme, it is the theme passed to [MaterialApp].
   ThemeData get lightTheme => _lightTheme;
   late ThemeData _lightTheme;

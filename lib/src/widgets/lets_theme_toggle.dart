@@ -4,15 +4,15 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sky_theme/src/sky_theme.dart';
-import 'package:sky_theme/src/utils/theme_mode_extension.dart';
+import 'package:lets_theme/src/lets_theme.dart';
+import 'package:lets_theme/src/utils/theme_mode_extension.dart';
 
-enum _SkyThemeToggleVariant { card, compact, label, icon }
+enum _LetsThemeToggleVariant { card, compact, label, icon }
 
-enum SkyThemeToggleSelectionMode { infinite, specific }
+enum LetsThemeToggleSelectionMode { infinite, specific }
 
-class SkyThemeToggleIcon {
-  SkyThemeToggleIcon({
+class LetsThemeToggleIcon {
+  LetsThemeToggleIcon({
     required this.icon,
     required this.selected,
   });
@@ -21,15 +21,15 @@ class SkyThemeToggleIcon {
   final IconData selected;
 }
 
-class SkyThemeToggle extends StatefulWidget {
-  const SkyThemeToggle({
+class LetsThemeToggle extends StatefulWidget {
+  const LetsThemeToggle({
     super.key,
     this.width,
     this.height,
     this.modes = _defaultMods,
     this.labels = _defaultLabels,
     this.tooltips,
-    this.selectionMode = SkyThemeToggleSelectionMode.specific,
+    this.selectionMode = LetsThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
     this.elevation,
@@ -48,12 +48,12 @@ class SkyThemeToggle extends StatefulWidget {
     this.borderRadius,
     this.borderWidth,
     this.textStyle,
-  })  : _variant = _SkyThemeToggleVariant.card,
+  })  : _variant = _LetsThemeToggleVariant.card,
         lightIcon = null,
         darkIcon = null,
         systemIcon = null;
 
-  const SkyThemeToggle.compact({
+  const LetsThemeToggle.compact({
     super.key,
     this.width,
     this.height,
@@ -63,7 +63,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.lightIcon,
     this.darkIcon,
     this.systemIcon,
-    this.selectionMode = SkyThemeToggleSelectionMode.specific,
+    this.selectionMode = LetsThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
     this.elevation,
@@ -82,16 +82,16 @@ class SkyThemeToggle extends StatefulWidget {
     this.borderRadius,
     this.borderWidth,
     this.textStyle,
-  }) : _variant = _SkyThemeToggleVariant.compact;
+  }) : _variant = _LetsThemeToggleVariant.compact;
 
-  const SkyThemeToggle.label({
+  const LetsThemeToggle.label({
     super.key,
     this.width,
     this.height,
     this.modes = _defaultMods,
     this.labels = _defaultLabels,
     this.tooltips,
-    this.selectionMode = SkyThemeToggleSelectionMode.specific,
+    this.selectionMode = LetsThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
     this.elevation,
@@ -110,12 +110,12 @@ class SkyThemeToggle extends StatefulWidget {
     this.borderRadius,
     this.borderWidth,
     this.textStyle,
-  })  : _variant = _SkyThemeToggleVariant.label,
+  })  : _variant = _LetsThemeToggleVariant.label,
         lightIcon = null,
         darkIcon = null,
         systemIcon = null;
 
-  const SkyThemeToggle.icon({
+  const LetsThemeToggle.icon({
     super.key,
     this.width,
     this.height,
@@ -124,7 +124,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.lightIcon,
     this.darkIcon,
     this.systemIcon,
-    this.selectionMode = SkyThemeToggleSelectionMode.specific,
+    this.selectionMode = LetsThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
     this.elevation,
@@ -143,7 +143,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.borderRadius,
     this.borderWidth,
     this.textStyle,
-  })  : _variant = _SkyThemeToggleVariant.icon,
+  })  : _variant = _LetsThemeToggleVariant.icon,
         labels = null;
 
   final double? width;
@@ -151,10 +151,10 @@ class SkyThemeToggle extends StatefulWidget {
   final List<ThemeMode> modes;
   final List<String>? labels;
   final List<String>? tooltips;
-  final SkyThemeToggleIcon? lightIcon;
-  final SkyThemeToggleIcon? darkIcon;
-  final SkyThemeToggleIcon? systemIcon;
-  final SkyThemeToggleSelectionMode selectionMode;
+  final LetsThemeToggleIcon? lightIcon;
+  final LetsThemeToggleIcon? darkIcon;
+  final LetsThemeToggleIcon? systemIcon;
+  final LetsThemeToggleSelectionMode selectionMode;
   final MouseCursor? mouseCursor;
   final MaterialTapTargetSize? tapTargetSize;
   final double? elevation;
@@ -174,7 +174,7 @@ class SkyThemeToggle extends StatefulWidget {
   final double? borderWidth;
   final TextStyle? textStyle;
 
-  final _SkyThemeToggleVariant _variant;
+  final _LetsThemeToggleVariant _variant;
 
   static const List<ThemeMode> _defaultMods = <ThemeMode>[
     ThemeMode.light,
@@ -189,7 +189,7 @@ class SkyThemeToggle extends StatefulWidget {
   ];
 
   @override
-  State<SkyThemeToggle> createState() => _SkyThemeToggleState();
+  State<LetsThemeToggle> createState() => _LetsThemeToggleState();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -200,10 +200,10 @@ class SkyThemeToggle extends StatefulWidget {
     properties.add(IterableProperty<ThemeMode>('mods', modes));
     properties.add(IterableProperty<String>('labels', labels));
     properties.add(IterableProperty<String>('tooltips', tooltips));
-    properties.add(DiagnosticsProperty<SkyThemeToggleIcon?>('lightIcon', lightIcon));
-    properties.add(DiagnosticsProperty<SkyThemeToggleIcon?>('darkIcon', darkIcon));
-    properties.add(DiagnosticsProperty<SkyThemeToggleIcon?>('systemIcon', systemIcon));
-    properties.add(EnumProperty<SkyThemeToggleSelectionMode>('selectionMode', selectionMode));
+    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('lightIcon', lightIcon));
+    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('darkIcon', darkIcon));
+    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('systemIcon', systemIcon));
+    properties.add(EnumProperty<LetsThemeToggleSelectionMode>('selectionMode', selectionMode));
     properties.add(DiagnosticsProperty<MouseCursor?>('mouseCursor', mouseCursor));
     properties.add(EnumProperty<MaterialTapTargetSize?>('tapTargetSize', tapTargetSize));
     properties.add(ColorProperty('color', color));
@@ -226,7 +226,7 @@ class SkyThemeToggle extends StatefulWidget {
   }
 }
 
-class _SkyThemeToggleState extends State<SkyThemeToggle> {
+class _LetsThemeToggleState extends State<LetsThemeToggle> {
   late List<bool> _selections;
 
   double get _width =>
@@ -242,9 +242,9 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
     _selections = <bool>[
       for (final ThemeMode mode in widget.modes)
         switch (mode) {
-          ThemeMode.system => SkyTheme.of(context).mode.isSystem,
-          ThemeMode.light => SkyTheme.of(context).mode.isLight,
-          ThemeMode.dark => SkyTheme.of(context).mode.isDark,
+          ThemeMode.system => LetsTheme.of(context).mode.isSystem,
+          ThemeMode.light => LetsTheme.of(context).mode.isLight,
+          ThemeMode.dark => LetsTheme.of(context).mode.isDark,
         },
     ];
   }
@@ -254,23 +254,23 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
       _selections[i] = i == index;
     }
     switch (widget.selectionMode) {
-      case SkyThemeToggleSelectionMode.infinite:
-        SkyTheme.of(context).toggleThemeMode();
-      case SkyThemeToggleSelectionMode.specific:
-        SkyTheme.of(context).setThemeMode(widget.modes[index]);
+      case LetsThemeToggleSelectionMode.infinite:
+        LetsTheme.of(context).toggleThemeMode();
+      case LetsThemeToggleSelectionMode.specific:
+        LetsTheme.of(context).setThemeMode(widget.modes[index]);
     }
     setState(() {});
   }
 
   IconData _getIconData(int index) {
     return switch (widget.modes[index]) {
-      ThemeMode.light => SkyTheme.of(context).mode.isLight
+      ThemeMode.light => LetsTheme.of(context).mode.isLight
           ? widget.lightIcon?.selected ?? Icons.light_mode
           : widget.lightIcon?.icon ?? Icons.light_mode_outlined,
-      ThemeMode.dark => SkyTheme.of(context).mode.isDark
+      ThemeMode.dark => LetsTheme.of(context).mode.isDark
           ? widget.darkIcon?.selected ?? Icons.dark_mode
           : widget.darkIcon?.icon ?? Icons.dark_mode_outlined,
-      ThemeMode.system => SkyTheme.of(context).mode.isSystem
+      ThemeMode.system => LetsTheme.of(context).mode.isSystem
           ? widget.systemIcon?.icon ?? Icons.brightness_6
           : widget.systemIcon?.icon ?? Icons.brightness_6_outlined,
     };
@@ -299,10 +299,10 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
       widget.modes.length,
       (int index) {
         final Widget child = switch (widget._variant) {
-          _SkyThemeToggleVariant.card => _buildCardToggleBody(index),
-          _SkyThemeToggleVariant.compact => _buildCompactToggleBody(index),
-          _SkyThemeToggleVariant.label => _buildLabelToggleBody(index),
-          _SkyThemeToggleVariant.icon => _buildIconToggleBody(index),
+          _LetsThemeToggleVariant.card => _buildCardToggleBody(index),
+          _LetsThemeToggleVariant.compact => _buildCompactToggleBody(index),
+          _LetsThemeToggleVariant.label => _buildLabelToggleBody(index),
+          _LetsThemeToggleVariant.icon => _buildIconToggleBody(index),
         };
 
         if (widget.tooltips != null) {
@@ -359,25 +359,25 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
               switch (mode) {
                 ThemeMode.light => _getToggleIllustration(
                     background: const Color(0xFFf5f5f5),
-                    theme: SkyTheme.of(context).lightTheme,
+                    theme: LetsTheme.of(context).lightTheme,
                   ),
                 ThemeMode.dark => _getToggleIllustration(
                     background: const Color(0xFF4e4e4e),
-                    theme: SkyTheme.of(context).darkTheme,
+                    theme: LetsTheme.of(context).darkTheme,
                   ),
                 ThemeMode.system => Row(
                     children: <Widget>[
                       Expanded(
                         child: _getToggleIllustration(
                           background: const Color(0xFF4e4e4e),
-                          theme: SkyTheme.of(context).darkTheme,
+                          theme: LetsTheme.of(context).darkTheme,
                           width: MediaQuery.of(context).size.width * .12,
                         ),
                       ),
                       Expanded(
                         child: _getToggleIllustration(
                           background: const Color(0xFFf5f5f5),
-                          theme: SkyTheme.of(context).lightTheme,
+                          theme: LetsTheme.of(context).lightTheme,
                           width: MediaQuery.of(context).size.width * .12,
                         ),
                       ),
@@ -440,8 +440,8 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
   }
 
   Widget _getCheckMark(int index) {
-    if (SkyTheme.of(context).mode.isSystem &&
-        SkyTheme.of(context).brightness == Brightness.dark) {
+    if (LetsTheme.of(context).mode.isSystem &&
+        LetsTheme.of(context).brightness == Brightness.dark) {
       return const Positioned(
         left: 25,
         bottom: 5,

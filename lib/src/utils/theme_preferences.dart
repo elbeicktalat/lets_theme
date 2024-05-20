@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sky_theme/src/sky_theme.dart';
+import 'package:lets_theme/src/lets_theme.dart';
 
 /// Utility for storing theme info in SharedPreferences
 class ThemePreferences {
@@ -42,14 +42,14 @@ class ThemePreferences {
   /// saves the current theme preferences to the shared-preferences
   Future<bool> save() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.setString(SkyTheme.preferencesKey, json.encode(toJson()));
+    return prefs.setString(LetsTheme.preferencesKey, json.encode(toJson()));
   }
 
   /// retrieves preferences from the shared-preferences
   static Future<ThemePreferences?> fromPrefs() async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? themeDataString = prefs.getString(SkyTheme.preferencesKey);
+      final String? themeDataString = prefs.getString(LetsTheme.preferencesKey);
       if (themeDataString == null || themeDataString.isEmpty) return null;
       return ThemePreferences.fromJson(json.decode(themeDataString));
     } on Exception catch (error, stacktrace) {
