@@ -6,21 +6,21 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lets_theme/src/lets_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Utility for storing theme info in SharedPreferences
 class ThemePreferences {
   ThemePreferences._(this.mode, this.defaultMode);
 
-  ThemePreferences.initial({ThemeMode mode = ThemeMode.system})
+  ThemePreferences.initial({ThemeMode mode = ThemeMode.light})
       : this._(mode, mode);
 
   ThemePreferences.fromJson(Map<String, dynamic> json) {
     if (json['theme_mode'] != null) {
       mode = ThemeMode.values[json['theme_mode']];
     } else {
-      mode = ThemeMode.system;
+      mode = ThemeMode.light;
     }
     if (json['default_theme_mode'] != null) {
       defaultMode = ThemeMode.values[json['default_theme_mode']];

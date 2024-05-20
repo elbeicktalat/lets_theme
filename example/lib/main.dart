@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return LetsTheme(
       light: ThemeData.light(),
       dark: ThemeData.dark(),
-      initialMode: themeMode ?? ThemeMode.system,
+      initialMode: themeMode ?? ThemeMode.light,
       builder: (ThemeData light, ThemeData dark) {
         return MaterialApp(
           title: 'Flutter Demo',
