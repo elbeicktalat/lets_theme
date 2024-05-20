@@ -32,6 +32,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.selectionMode = SkyThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
+    this.elevation,
     this.color,
     this.selectedColor,
     this.fillColor,
@@ -39,6 +40,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.highlightColor,
     this.hoverColor,
     this.splashColor,
+    this.shadowColor,
     this.focusNodes,
     this.renderBorder,
     this.borderColor,
@@ -64,6 +66,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.selectionMode = SkyThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
+    this.elevation,
     this.color,
     this.selectedColor,
     this.fillColor,
@@ -71,6 +74,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.highlightColor,
     this.hoverColor,
     this.splashColor,
+    this.shadowColor,
     this.focusNodes,
     this.renderBorder,
     this.borderColor,
@@ -90,6 +94,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.selectionMode = SkyThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
+    this.elevation,
     this.color,
     this.selectedColor,
     this.fillColor,
@@ -97,6 +102,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.highlightColor,
     this.hoverColor,
     this.splashColor,
+    this.shadowColor,
     this.focusNodes,
     this.renderBorder,
     this.borderColor,
@@ -121,6 +127,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.selectionMode = SkyThemeToggleSelectionMode.specific,
     this.mouseCursor,
     this.tapTargetSize,
+    this.elevation,
     this.color,
     this.selectedColor,
     this.fillColor,
@@ -128,6 +135,7 @@ class SkyThemeToggle extends StatefulWidget {
     this.highlightColor,
     this.hoverColor,
     this.splashColor,
+    this.shadowColor,
     this.focusNodes,
     this.renderBorder,
     this.borderColor,
@@ -149,6 +157,7 @@ class SkyThemeToggle extends StatefulWidget {
   final SkyThemeToggleSelectionMode selectionMode;
   final MouseCursor? mouseCursor;
   final MaterialTapTargetSize? tapTargetSize;
+  final double? elevation;
   final Color? color;
   final Color? selectedColor;
   final Color? fillColor;
@@ -156,6 +165,7 @@ class SkyThemeToggle extends StatefulWidget {
   final Color? highlightColor;
   final Color? hoverColor;
   final Color? splashColor;
+  final Color? shadowColor;
   final List<FocusNode>? focusNodes;
   final bool? renderBorder;
   final Color? borderColor;
@@ -210,6 +220,8 @@ class SkyThemeToggle extends StatefulWidget {
     properties.add(DiagnosticsProperty<BorderRadius?>('borderRadius', borderRadius));
     properties.add(DoubleProperty('borderWidth', borderWidth));
     properties.add(DiagnosticsProperty<TextStyle?>('textStyle', textStyle));
+    properties.add(DoubleProperty('elevation', elevation));
+    properties.add(ColorProperty('shadowColor', shadowColor));
     // @formatter:on
   }
 }
@@ -219,6 +231,10 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
 
   double get _width =>
       widget.width ?? (MediaQuery.of(context).size.width - 4) / 3;
+
+  static const BorderRadius _defaultBorderRadius = BorderRadius.all(
+    Radius.circular(18.0),
+  );
 
   @override
   void didChangeDependencies() {
@@ -300,27 +316,32 @@ class _SkyThemeToggleState extends State<SkyThemeToggle> {
       },
     );
 
-    return FittedBox(
-      child: ToggleButtons(
-        onPressed: _onSelectThemeMode,
-        isSelected: _selections,
-        mouseCursor: widget.mouseCursor,
-        tapTargetSize: widget.tapTargetSize,
-        color: widget.color,
-        selectedColor: widget.selectedColor,
-        fillColor: widget.fillColor,
-        focusColor: widget.focusColor,
-        highlightColor: widget.highlightColor,
-        hoverColor: widget.hoverColor,
-        splashColor: widget.splashColor,
-        focusNodes: widget.focusNodes,
-        renderBorder: widget.renderBorder ?? true,
-        borderColor: widget.borderColor,
-        selectedBorderColor: widget.selectedBorderColor,
-        borderRadius: widget.borderRadius ?? BorderRadius.circular(18),
-        borderWidth: widget.borderWidth,
-        textStyle: widget.textStyle,
-        children: children,
+    return Material(
+      elevation: widget.elevation ?? 0.0,
+      shadowColor: widget.shadowColor,
+      borderRadius: widget.borderRadius ?? _defaultBorderRadius,
+      child: FittedBox(
+        child: ToggleButtons(
+          onPressed: _onSelectThemeMode,
+          isSelected: _selections,
+          mouseCursor: widget.mouseCursor,
+          tapTargetSize: widget.tapTargetSize,
+          color: widget.color,
+          selectedColor: widget.selectedColor,
+          fillColor: widget.fillColor,
+          focusColor: widget.focusColor,
+          highlightColor: widget.highlightColor,
+          hoverColor: widget.hoverColor,
+          splashColor: widget.splashColor,
+          focusNodes: widget.focusNodes,
+          renderBorder: widget.renderBorder ?? true,
+          borderColor: widget.borderColor,
+          selectedBorderColor: widget.selectedBorderColor,
+          borderRadius: widget.borderRadius ?? _defaultBorderRadius,
+          borderWidth: widget.borderWidth,
+          textStyle: widget.textStyle,
+          children: children,
+        ),
       ),
     );
   }
