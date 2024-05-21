@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:lets_theme/src/lets_theme.dart';
 import 'package:lets_theme/src/utils/theme_mode_extension.dart';
 
-enum _LetsThemeToggleVariant { card, compact, label, icon }
+enum _LetsThemeToggleVariant { toggle, card, compact, label, icon }
 
 enum LetsThemeToggleSelectionMode { infinite, specific }
 
@@ -48,10 +48,41 @@ class LetsThemeToggle extends StatefulWidget {
     this.borderRadius,
     this.borderWidth,
     this.textStyle,
-  })  : _variant = _LetsThemeToggleVariant.card,
+  })  : _variant = _LetsThemeToggleVariant.toggle,
         lightIcon = null,
         darkIcon = null,
         systemIcon = null;
+
+  const LetsThemeToggle.card({
+    super.key,
+    this.width,
+    this.height,
+    this.modes = _defaultMods,
+    this.labels = _defaultLabels,
+    this.tooltips,
+    this.selectionMode = LetsThemeToggleSelectionMode.specific,
+    this.elevation,
+    this.color,
+    this.selectedColor,
+    this.fillColor,
+    this.shadowColor,
+    this.focusNodes,
+    this.selectedBorderColor,
+    this.borderWidth,
+  })  : _variant = _LetsThemeToggleVariant.card,
+        lightIcon = null,
+        darkIcon = null,
+        systemIcon = null,
+        mouseCursor = null,
+        tapTargetSize = null,
+        focusColor = null,
+        highlightColor = null,
+        hoverColor = null,
+        splashColor = null,
+        renderBorder = null,
+        borderColor = null,
+        borderRadius = null,
+        textStyle = null;
 
   const LetsThemeToggle.compact({
     super.key,
@@ -229,8 +260,7 @@ class LetsThemeToggle extends StatefulWidget {
 class _LetsThemeToggleState extends State<LetsThemeToggle> {
   late List<bool> _selections;
 
-  double get _width =>
-      widget.width ?? (MediaQuery.of(context).size.width - 4) / 3;
+  double get _width => widget.width ?? MediaQuery.of(context).size.width / 3;
 
   static const BorderRadius _defaultBorderRadius = BorderRadius.all(
     Radius.circular(18.0),
@@ -295,14 +325,37 @@ class _LetsThemeToggleState extends State<LetsThemeToggle> {
       );
     }
 
+    if (widget._variant == _LetsThemeToggleVariant.card) {
+      return _LetsThemeCardToggle(
+        selections: _selections,
+        onPressed: _onSelectThemeMode,
+        modes: widget.modes,
+        labels: widget.labels!,
+        tooltips: widget.tooltips,
+        width: _width,
+        height: widget.height,
+        elevation: widget.elevation,
+        color: widget.color,
+        selectedColor: widget.selectedColor,
+        fillColor: widget.fillColor,
+        shadowColor: widget.shadowColor,
+        focusNodes: widget.focusNodes,
+        selectedBorderColor: widget.borderColor,
+        borderWidth: widget.borderWidth,
+      );
+    }
+
     final List<Widget> children = List<Widget>.generate(
       widget.modes.length,
       (int index) {
         final Widget child = switch (widget._variant) {
-          _LetsThemeToggleVariant.card => _buildCardToggleBody(index),
+          _LetsThemeToggleVariant.toggle => _buildDefaultToggleBody(index),
           _LetsThemeToggleVariant.compact => _buildCompactToggleBody(index),
           _LetsThemeToggleVariant.label => _buildLabelToggleBody(index),
           _LetsThemeToggleVariant.icon => _buildIconToggleBody(index),
+
+          // no effect because of above build return.
+          _LetsThemeToggleVariant.card => const SizedBox.shrink(),
         };
 
         if (widget.tooltips != null) {
@@ -346,7 +399,7 @@ class _LetsThemeToggleState extends State<LetsThemeToggle> {
     );
   }
 
-  Widget _buildCardToggleBody(int index) {
+  Widget _buildDefaultToggleBody(int index) {
     final ThemeMode mode = widget.modes[index];
 
     return Column(
@@ -494,5 +547,192 @@ class _LetsThemeToggleState extends State<LetsThemeToggle> {
         ],
       ),
     );
+  }
+}
+
+class _LetsThemeCardToggle extends StatelessWidget {
+  const _LetsThemeCardToggle({
+    required this.selections,
+    required this.onPressed,
+    required this.modes,
+    required this.labels,
+    required this.tooltips,
+    required this.width,
+    required this.height,
+    required this.elevation,
+    required this.color,
+    required this.selectedColor,
+    required this.fillColor,
+    required this.shadowColor,
+    required this.focusNodes,
+    required this.selectedBorderColor,
+    required this.borderWidth,
+  });
+
+  final List<bool> selections;
+  final void Function(int index) onPressed;
+  final List<ThemeMode> modes;
+  final List<String> labels;
+  final List<String>? tooltips;
+  final double? width;
+  final double? height;
+  final double? elevation;
+  final Color? color;
+  final Color? selectedColor;
+  final Color? fillColor;
+  final Color? shadowColor;
+  final List<FocusNode>? focusNodes;
+  final Color? selectedBorderColor;
+  final double? borderWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    Widget child(int index) {
+      return Column(
+        children: <Widget>[
+          Expanded(
+            child: TextButton(
+              onPressed: () => onPressed(index),
+              focusNode: focusNodes?[index],
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.all(14.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                  side: selections[index]
+                      ? BorderSide(
+                          width: borderWidth ?? 4,
+                          color: selectedBorderColor ?? colorScheme.primary,
+                        )
+                      : BorderSide.none,
+                ),
+              ),
+              child: Card.outlined(
+                margin: EdgeInsets.zero,
+                elevation: elevation,
+                shadowColor: shadowColor,
+                child: switch (modes[index]) {
+                  ThemeMode.system => Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: _buildCardIllustration(
+                            theme: LetsTheme.of(context).lightTheme,
+                            primaryColorShowWidth: 24,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: _buildCardIllustration(
+                            theme: LetsTheme.of(context).darkTheme,
+                            primaryColorShowWidth: 24,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ThemeMode.light => _buildCardIllustration(
+                      theme: LetsTheme.of(context).lightTheme,
+                    ),
+                  ThemeMode.dark => _buildCardIllustration(
+                      theme: LetsTheme.of(context).darkTheme,
+                    ),
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            labels[index],
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: selections[index]
+                  ? selectedColor ?? colorScheme.primary
+                  : color ?? Colors.grey,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return FittedBox(
+      child: Row(
+        children: List<Widget>.generate(
+          modes.length,
+          (int index) => SizedBox(
+            width: width ?? MediaQuery.of(context).size.width / 3,
+            height: height ?? MediaQuery.of(context).size.height * .25,
+            child: child(index),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCardIllustration({
+    required ThemeData theme,
+    BorderRadius? borderRadius,
+    double? primaryColorShowWidth,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        color: fillColor ?? theme.colorScheme.surface,
+        borderRadius: borderRadius ?? BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              'Aa',
+              style: TextStyle(
+                color: color ?? theme.colorScheme.onSurface,
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            width: primaryColorShowWidth,
+            height: 24,
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    // @formatter:off
+    super.debugFillProperties(properties);
+    properties.add(IterableProperty<bool>('selections', selections));
+    properties.add(ObjectFlagProperty<void Function(int index)>.has('onPressed', onPressed));
+    properties.add(IterableProperty<ThemeMode>('modes', modes));
+    properties.add(IterableProperty<String>('labels', labels));
+    properties.add(IterableProperty<String>('tooltips', tooltips));
+    properties.add(DoubleProperty('width', width));
+    properties.add(DoubleProperty('height', height));
+    properties.add(DoubleProperty('elevation', elevation));
+    properties.add(ColorProperty('color', color));
+    properties.add(ColorProperty('selectedColor', selectedColor));
+    properties.add(ColorProperty('fillColor', fillColor));
+    properties.add(ColorProperty('shadowColor', shadowColor));
+    properties.add(IterableProperty<FocusNode>('focusNodes', focusNodes));
+    properties.add(ColorProperty('selectedBorderColor', selectedBorderColor));
+    properties.add(DoubleProperty('borderWidth', borderWidth));
+    // @formatter:on
   }
 }
