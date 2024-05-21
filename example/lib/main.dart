@@ -50,37 +50,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 12),
-          Text(
-            'Current Theme Mode',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              LetsTheme.of(context).mode.name.toUpperCase(),
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-          ),
-          const SizedBox(height: 24),
-          const LetsThemeToggle(
-            selectionMode: LetsThemeToggleSelectionMode.specific,
-            labels: [
-              'Day Mode',
-              'Night Mode',
-              'Auto Mode',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              Text(
+                'Current Theme Mode',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                LetsTheme.of(context).mode.name.toUpperCase(),
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              const SizedBox(height: 24),
+              const LetsThemeToggle(
+                selectionMode: LetsThemeToggleSelectionMode.specific,
+                labels: [
+                  'Day Mode',
+                  'Night Mode',
+                  'Auto Mode',
+                ],
+              ),
+              const SizedBox(height: 24),
+              const LetsThemeToggle.card(),
+              const SizedBox(height: 24),
+              const LetsThemeToggle.compact(),
+              const SizedBox(height: 24),
+              const LetsThemeToggle.label(),
+              const SizedBox(height: 24),
+              const LetsThemeToggle.icon(),
             ],
           ),
-          const SizedBox(height: 24),
-          const LetsThemeToggle.compact(),
-          const SizedBox(height: 24),
-          const LetsThemeToggle.label(),
-          const SizedBox(height: 24),
-          const LetsThemeToggle.icon(),
-        ],
+        ),
       ),
     );
   }

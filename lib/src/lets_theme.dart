@@ -18,11 +18,11 @@ typedef ThemeBuilder = Widget Function(ThemeData light, ThemeData dark);
 ///
 /// ```dart
 ///  LetsTheme(
-///   light: lightTheme,
-///   dark: darkTheme,
-///   initial: ThemeMode.system,
-///   builder: (theme, darkTheme) => MaterialApp(
-///     theme: theme,
+///   light: ThemeData.light(),
+///   dark: ThemeData.dark(),
+///   initialMode: ThemeMode.system,
+///   builder: (lightTheme, darkTheme) => MaterialApp(
+///     theme: lightTheme,
 ///     darkTheme: darkTheme,
 ///     home: MyHomePage(),
 ///   ),
