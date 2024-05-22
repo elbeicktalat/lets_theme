@@ -26,7 +26,6 @@ Add this to your packages pubspec.yaml file:
 ```yaml
 dependencies:
   lets_theme: <^last>
-  shared_preferences: <^last>
 ```
 
 ## Getting Started
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
     return LetsTheme(
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true), 
-      initialMode: ThemeMode.system, // bad: I'll in more detail below, but you need to know that this would fine if we don't save any preferences.
+      initialMode: ThemeMode.light, // bad: I'll explain why in more detail below, but you need to know that this would be fine if we don't save any preferences.
       builder: (ThemeData light, ThemeData dark) => MaterialApp(
         title: "Let's Theme Demo",
         theme: light,
@@ -67,19 +66,23 @@ The Below example shows how it can be done.
 ```dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final savedThemeMode = await LetsTheme.getThemeMode();
+  final ThemeMode savedThemeMode = await LetsTheme.getThemeMode();
   runApp(MyApp(savedThemeMode: savedThemeMode));
 }
 ```
 
 ```dart
 class MyApp extends StatelessWidget {
+  const MyApp({this.savedThemeMode, super.key});
+  
+  final ThemeMode savedThemeMode;
+  
   @override
   Widget build(BuildContext context) {
     return LetsTheme(
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true),
-      initial: savedThemeMode ?? ThemeMode.system, // good
+      initial: savedThemeMode ?? ThemeMode.light, // good
       builder: (ThemeData light, ThemeData dark) => MaterialApp(
         title: "Let's Theme Demo",
         theme: light,
@@ -131,6 +134,8 @@ Widget build(BuildContext context) {
         ),
         const SizedBox(height: 24),
         const LetsThemeToggle(),
+        const SizedBox(height: 24),
+        const LetsThemeToggle.card(), // New since v0.0.2
         const SizedBox(height: 24),
         const LetsThemeToggle.compact(),
         const SizedBox(height: 24),
@@ -192,8 +197,8 @@ const LetsThemeToggle.compact(
 
 ## Changing Theme Mode
 
-Now that you have initialized your app as mentioned above. It's very easy and straight forward to
-change your theme modes: **light to dark, dark to light or to system default**.
+Now that you have initialized your app as mentioned above.
+It's very easy and straightforward to change your theme modes: **light to dark, dark to light or to system default**.
 
 ```dart
 // sets theme mode to dark
@@ -249,7 +254,8 @@ You can fall back to those default themes in a straightforward way.
 LetsTheme.of(context).reset();
 ```
 
-This will reset your `ThemeData` as well as `ThemeMode` to the **initial** values provided at the time of initialization.
+This will reset your `ThemeData` as well as `ThemeMode` to the **initialMode** values
+provided at the time of initialization.
 
 ## Listen to the theme mode changes
 
@@ -262,7 +268,7 @@ LetsTheme.of(context).themeModeNotifier.addListener(() {
 });
 ```
 
-Or you can utilize it to react on UI with
+Or you can use it to react on UI with
 
 ```dart
 ValueListenableBuilder(
