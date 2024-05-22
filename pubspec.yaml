@@ -1,12 +1,12 @@
 name: lets_theme
 description: Provides couple of widgets to change between system and light/dark theme.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/elbeicktalat/lets_theme
 issue_tracker: https://github.com/elbeicktalat/lets_theme/issues
 
 screenshots:
   - description: Let's Theme Toggles
-    path: screenshots/light_theme.png
+    path: screenshots/lets_theme.png
 
 environment:
   sdk: '>=3.3.4 <4.0.0'

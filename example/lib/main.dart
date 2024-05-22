@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 24),
               const LetsThemeToggle(
-                selectionMode: LetsThemeToggleSelectionMode.specific,
+                selectionMode: LetsThemeToggleSelectionMode.infinite,
                 labels: [
                   'Day Mode',
                   'Night Mode',

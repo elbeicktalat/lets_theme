@@ -224,19 +224,30 @@ class LetsThemeToggle extends StatefulWidget {
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    // @formatter:off
     super.debugFillProperties(properties);
     properties.add(DoubleProperty('width', width));
     properties.add(DoubleProperty('height', height));
     properties.add(IterableProperty<ThemeMode>('mods', modes));
     properties.add(IterableProperty<String>('labels', labels));
     properties.add(IterableProperty<String>('tooltips', tooltips));
-    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('lightIcon', lightIcon));
-    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('darkIcon', darkIcon));
-    properties.add(DiagnosticsProperty<LetsThemeToggleIcon?>('systemIcon', systemIcon));
-    properties.add(EnumProperty<LetsThemeToggleSelectionMode>('selectionMode', selectionMode));
-    properties.add(DiagnosticsProperty<MouseCursor?>('mouseCursor', mouseCursor));
-    properties.add(EnumProperty<MaterialTapTargetSize?>('tapTargetSize', tapTargetSize));
+    properties
+        .add(DiagnosticsProperty<LetsThemeToggleIcon?>('lightIcon', lightIcon));
+    properties
+        .add(DiagnosticsProperty<LetsThemeToggleIcon?>('darkIcon', darkIcon));
+    properties.add(
+      DiagnosticsProperty<LetsThemeToggleIcon?>('systemIcon', systemIcon),
+    );
+    properties.add(
+      EnumProperty<LetsThemeToggleSelectionMode>(
+        'selectionMode',
+        selectionMode,
+      ),
+    );
+    properties
+        .add(DiagnosticsProperty<MouseCursor?>('mouseCursor', mouseCursor));
+    properties.add(
+      EnumProperty<MaterialTapTargetSize?>('tapTargetSize', tapTargetSize),
+    );
     properties.add(ColorProperty('color', color));
     properties.add(ColorProperty('selectedColor', selectedColor));
     properties.add(ColorProperty('fillColor', fillColor));
@@ -248,12 +259,12 @@ class LetsThemeToggle extends StatefulWidget {
     properties.add(DiagnosticsProperty<bool?>('renderBorder', renderBorder));
     properties.add(ColorProperty('borderColor', borderColor));
     properties.add(ColorProperty('selectedBorderColor', selectedBorderColor));
-    properties.add(DiagnosticsProperty<BorderRadius?>('borderRadius', borderRadius));
+    properties
+        .add(DiagnosticsProperty<BorderRadius?>('borderRadius', borderRadius));
     properties.add(DoubleProperty('borderWidth', borderWidth));
     properties.add(DiagnosticsProperty<TextStyle?>('textStyle', textStyle));
     properties.add(DoubleProperty('elevation', elevation));
     properties.add(ColorProperty('shadowColor', shadowColor));
-    // @formatter:on
   }
 }
 
@@ -716,10 +727,14 @@ class _LetsThemeCardToggle extends StatelessWidget {
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    // @formatter:off
     super.debugFillProperties(properties);
     properties.add(IterableProperty<bool>('selections', selections));
-    properties.add(ObjectFlagProperty<void Function(int index)>.has('onPressed', onPressed));
+    properties.add(
+      ObjectFlagProperty<void Function(int index)>.has(
+        'onPressed',
+        onPressed,
+      ),
+    );
     properties.add(IterableProperty<ThemeMode>('modes', modes));
     properties.add(IterableProperty<String>('labels', labels));
     properties.add(IterableProperty<String>('tooltips', tooltips));
@@ -733,6 +748,5 @@ class _LetsThemeCardToggle extends StatelessWidget {
     properties.add(IterableProperty<FocusNode>('focusNodes', focusNodes));
     properties.add(ColorProperty('selectedBorderColor', selectedBorderColor));
     properties.add(DoubleProperty('borderWidth', borderWidth));
-    // @formatter:on
   }
 }
