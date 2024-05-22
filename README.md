@@ -182,7 +182,7 @@ There is 2 types of changing. One is `infinite` and next is `spesific`, the firs
 and everytime you click any one of the toggles, the selection moves to the next. The Second one instead,
 moves straight away to the toggle you clicked on, changing the theme to what you have clicked on.  
 
-[Video](https://raw.githubusercontent.com/elbeicktalat/lets_theme/main/.doc/readme/sky_toggle_selection_mode_demo.mp4)
+[Video](https://github.com/elbeicktalat/lets_theme/assets/59793332/87ca99eb-b05a-44d6-90b9-cc50e35cadf8)
 
 ```dart
 const LetsThemeToggle(
